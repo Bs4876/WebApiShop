@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="M:\Wep API\WepApiShop\WepApiShop\.editorconfig" />
+    <None Include="wwwroot\home.html" />
+    <None Include="wwwroot\home.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="M:\Wep API\WepApiShop\WepApiShop\.editorconfig" />
+  </ItemGroup>
+
+</Project>
