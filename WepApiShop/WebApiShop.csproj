@@ -20,4 +20,8 @@
     <EditorConfigFiles Remove="M:\Wep API\WepApiShop\WepApiShop\.editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,20 +3,21 @@ const curentUser = sessionStorage.getItem("currentUser")
 h1.textContent = `שלום ${JSON.parse(curentUser).firstName} בוא נצלול פנימה`
 console.log(curentUser)
 async function update() {
-    const ind = JSON.parse(curentUser).userId;
+    const userId = JSON.parse(curentUser).userId;
     const userName = document.querySelector("#userName").value
     const firstName = document.querySelector("#firstName").value
     const lastName = document.querySelector("#lastName").value
     const password = document.querySelector("#password").value
-
+    
     const updateUserData = {
+        userId,
         userName, 
         firstName,
         lastName, 
         password 
     };
-    console.log(updateUserData,ind);
-    const response = await fetch(`https://localhost:44392/api/Users/${ind}`,
+    console.log(updateUserData, userId);
+    const response = await fetch(`https://localhost:44392/api/Users/${userId}`,
         {
             method: 'PUT',
             headers: {
