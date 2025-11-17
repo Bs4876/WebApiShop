@@ -11,7 +11,12 @@ namespace WebApiShop.Controllers
     [ApiController]
     public class PasswordController : ControllerBase
     {
-        PasswordService service = new PasswordService();
+        IPasswordService _passwordService;
+        public PasswordController(IPasswordService _passwordService)
+        { 
+            this._passwordService = _passwordService;
+        }
+       
         // GET: api/<PasswordController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -30,7 +35,7 @@ namespace WebApiShop.Controllers
         [HttpPost]
         public CheckPassowrd Post([FromBody] string password)
         {
-            return service.checkStrengthPassword(password);
+            return _passwordService.checkStrengthPassword(password);
         }
 
         // PUT api/<PasswordController>/5
