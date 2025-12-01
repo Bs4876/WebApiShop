@@ -26,9 +26,9 @@ namespace WepApiShop.Controllers
         // GET api/<Users>/5
         [HttpGet("{id}")]
 
-        public ActionResult<User> Get(int ind)
+        public async Task<ActionResult<User>> Get(int ind)
         {
-            User user= _usersServices.getUserById(ind);
+            User user =await _usersServices.getUserById(ind);
             if (user == null)
                 return NoContent();
             return Ok(user);
@@ -36,31 +36,31 @@ namespace WepApiShop.Controllers
 
         [HttpPost]
         // POST api/<Users>
-        public ActionResult <User> POST([FromBody] User user)
+        public async Task<ActionResult<User>> POST([FromBody] User user)
         {
-            User postUser= _usersServices.registerUser(user);
+            User postUser =await _usersServices.registerUser(user);
             if (postUser == null)
                 return BadRequest();
-            return CreatedAtAction(nameof(Get), new { id = postUser.userId }, postUser);
+            return CreatedAtAction(nameof(Get), new { id = postUser.UserId }, postUser);
         }
 
         [HttpPost ("login")]
-       public ActionResult<User> Post([FromBody] UserLog userToLog)
+       public async Task<ActionResult<User>> Post([FromBody] UserLog userToLog)
        {
-            User user = _usersServices.loginUser(userToLog);
+            User user  =await _usersServices.loginUser(userToLog);
             if (user == null)
                 return NoContent();
-            return CreatedAtAction(nameof(Get), new { id = user.userId }, user);
+            return CreatedAtAction(nameof(Get), new { id = user.UserId }, user);
         }
 
         // PUT api/<Users>/5
         [HttpPut("{id}")]
-        public ActionResult<User> Put(int id, [FromBody] User userToUpdate)
+        public async Task<ActionResult<User>> Put(int id, [FromBody] User userToUpdate)
         {
-            User postUser =_usersServices.updateUser(userToUpdate,id);
+            User postUser =await _usersServices.updateUser(userToUpdate,id);
             if (postUser == null)
                 return BadRequest();
-            return CreatedAtAction(nameof(Get), new { id = postUser.userId }, postUser);
+            return CreatedAtAction(nameof(Get), new { id = postUser.UserId }, postUser);
         }
         
 

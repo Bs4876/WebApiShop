@@ -14,31 +14,31 @@ namespace Services
         }
 
 
-        public User getUserById(int id)
+        public async Task<User> getUserById(int id)
         {
-            return _iUsersRepository.getUserById(id);
+            return await  _iUsersRepository.getUserById(id);
         }
-        public User registerUser(User user)
+        public async Task<User> registerUser(User user)
         {
-            CheckPassowrd checkPassowrd = _iPasswordService.checkStrengthPassword(user.password);
+            CheckPassowrd checkPassowrd = _iPasswordService.checkStrengthPassword(user.Password);
             if (checkPassowrd.strength < 2)
             {
                 return null;
             }
-            return _iUsersRepository.registerUser(user);
+            return await _iUsersRepository.registerUser(user);
         }
-        public User loginUser(UserLog userTolog)
+        public async Task<User> loginUser(UserLog userTolog)
         {
-            return _iUsersRepository.loginUser(userTolog);
+            return await _iUsersRepository.loginUser(userTolog);
         }
-        public User updateUser(User user, int id)
+        public async Task<User> updateUser(User user, int id)
         {
-            CheckPassowrd checkPassowrd = _iPasswordService.checkStrengthPassword(user.password);
+            CheckPassowrd checkPassowrd = _iPasswordService.checkStrengthPassword(user.Password);
             if (checkPassowrd.strength < 2)
             {
                 return null;
             }
-            return _iUsersRepository.updateUser(user, id);
+            return await _iUsersRepository.updateUser(user, id);
         }
     }
 }
