@@ -1,10 +1,10 @@
 ﻿
 async function login () {
-    const userName = document.querySelector("#existUserName").value
+    const UserMail = document.querySelector("#existUserMail").value
     const password = document.querySelector("#existPassword").value
 
     const userToLogin = {
-        userName,
+        UserMail,
         password
     };
 
@@ -30,14 +30,14 @@ async function login () {
 }
 
 async function register() {
-    const userName = document.querySelector("#userName").value
+    const UserMail = document.querySelector("#UserMail").value
     const firstName = document.querySelector("#firstName").value
     const lastName = document.querySelector("#lastName").value
     const password = document.querySelector("#password").value
     const newUserData = {
         firstName,
         lastName,
-        userName,
+        UserMail,
         password 
     };
     console.log(newUserData)

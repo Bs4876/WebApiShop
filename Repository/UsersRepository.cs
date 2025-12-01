@@ -27,7 +27,7 @@ namespace Repository
         public async Task<User> loginUser(UserLog userToLog)
         {
             return await ShopContext_.Users.FirstOrDefaultAsync
-                (x => x.UserMail == userToLog.userName && x.Password == userToLog.password);
+                (x => x.UserMail == userToLog.UserMail && x.Password == userToLog.password);
         }
         public async Task<User> updateUser(User userToUpdate, int id)
         {

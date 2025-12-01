@@ -16,13 +16,7 @@ namespace WepApiShop.Controllers
     {
             _usersServices = iUsersServices;
     }
-        // GET: api/<Users>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "user1", "user2" };
-        }
-
+       
         // GET api/<Users>/5
         [HttpGet("{id}")]
 
@@ -59,15 +53,9 @@ namespace WepApiShop.Controllers
         {
             User postUser =await _usersServices.updateUser(userToUpdate,id);
             if (postUser == null)
-                return BadRequest();
+                return BadRequest("Password is not strong enough");
             return CreatedAtAction(nameof(Get), new { id = postUser.UserId }, postUser);
         }
-        
 
-        // DELETE api/<Users>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class UserLog
     {
-        public string userName { get; set; }
+        public string UserMail { get; set; }
         public string password { get; set; }
     }
 }

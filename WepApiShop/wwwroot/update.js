@@ -4,14 +4,14 @@ h1.textContent = `שלום ${JSON.parse(curentUser).firstName} בוא נצלול
 console.log(curentUser)
 async function update() {
     const userId = JSON.parse(curentUser).userId;
-    const userName = document.querySelector("#userName").value
+    const UserMail = document.querySelector("#UserMail").value
     const firstName = document.querySelector("#firstName").value
     const lastName = document.querySelector("#lastName").value
     const password = document.querySelector("#password").value
     
     const updateUserData = {
         userId,
-        userName, 
+        UserMail, 
         firstName,
         lastName, 
         password 
