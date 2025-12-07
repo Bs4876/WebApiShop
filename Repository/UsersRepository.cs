@@ -31,10 +31,10 @@ namespace Repository
         }
         public async Task<User> updateUser(User userToUpdate, int id)
         {
-            //await ShopContext_.Users.ExecuteUpdateAsync(userToUpdate, id);
             ShopContext_.Users.Update(userToUpdate);
             await ShopContext_.SaveChangesAsync();
             return userToUpdate;
         }
+  
     }
 }

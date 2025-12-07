@@ -9,13 +9,31 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPasswordService, PasswordService>();
 
 builder.Services.AddScoped<IUsersServices, UsersServices>();
+builder.Services.AddScoped<ICategoriesServies, CategoriesServies>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
 builder.Services.AddDbContext<ShopContext>(option=>option.UseSqlServer("Data Source=SRV2\\PUPILS;Initial Catalog=330745571_MyDB;Integrated Security=True;Encrypt=False"));
 
 builder.Services.AddControllers();
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "My API V1");
+    });
+}
+
 
 // Configure the HTTP request pipeline.
 

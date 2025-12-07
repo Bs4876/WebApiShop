@@ -2,20 +2,23 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using Entities;
 using Microsoft.EntityFrameworkCore;
+using Entities;
 
 namespace Repository;
 
 public partial class ShopContext : DbContext
 {
-
     public ShopContext(DbContextOptions<ShopContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<CategoriesTbl> CategoriesTbls { get; set; }
+
+    public virtual DbSet<OrderItemsTbl> OrderItemsTbls { get; set; }
+
+    public virtual DbSet<OrdersTbl> OrdersTbls { get; set; }
 
     public virtual DbSet<ProductsTbl> ProductsTbls { get; set; }
 
@@ -31,6 +34,44 @@ public partial class ShopContext : DbContext
 
             entity.Property(e => e.CategoryId).HasColumnName("Category_id");
             entity.Property(e => e.CategoryName).HasColumnName("Category_name");
+        });
+
+        modelBuilder.Entity<OrderItemsTbl>(entity =>
+        {
+            entity.HasKey(e => e.OrderItemId);
+
+            entity.ToTable("Order_items_tbl");
+
+            entity.Property(e => e.OrderItemId).HasColumnName("Order_item_id");
+            entity.Property(e => e.OrderId).HasColumnName("Order_id");
+            entity.Property(e => e.ProductId).HasColumnName("Product_id");
+
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItemsTbls)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Order_items_tbl_Orders_tbl");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.OrderItemsTbls)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Order_items_tbl_Products_tbl");
+        });
+
+        modelBuilder.Entity<OrdersTbl>(entity =>
+        {
+            entity.HasKey(e => e.OrderId);
+
+            entity.ToTable("Orders_tbl");
+
+            entity.Property(e => e.OrderId).HasColumnName("Order_id");
+            entity.Property(e => e.OrderDate).HasColumnName("Order_date");
+            entity.Property(e => e.OrderSum).HasColumnName("Order_sum");
+            entity.Property(e => e.UserId).HasColumnName("User_id");
+
+            entity.HasOne(d => d.User).WithMany(p => p.OrdersTbls)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Orders_tbl_Users");
         });
 
         modelBuilder.Entity<ProductsTbl>(entity =>

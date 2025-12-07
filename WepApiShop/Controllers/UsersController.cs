@@ -49,12 +49,12 @@ namespace WepApiShop.Controllers
 
         // PUT api/<Users>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<User>> Put(int id, [FromBody] User userToUpdate)
+        public async Task<ActionResult> Put(int id, [FromBody] User userToUpdate)
         {
             User postUser =await _usersServices.updateUser(userToUpdate,id);
             if (postUser == null)
                 return BadRequest("Password is not strong enough");
-            return CreatedAtAction(nameof(Get), new { id = postUser.UserId }, postUser);
+            return NoContent();
         }
 
     }

@@ -25,8 +25,8 @@ async function update() {
             },
             body: JSON.stringify(updateUserData)
         });
-    const userData = await response.json();
-    if (response.status == 201) {
+    const userData = await response;
+    if (response.status == 204) {
         sessionStorage.setItem("user", JSON.stringify(updateUserData));
         alert("עודכנו הפרטים")
     }
