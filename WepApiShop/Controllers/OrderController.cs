@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DTOs;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 
@@ -18,16 +19,16 @@ namespace WebApiShop.Controllers
 
         // GET api/<OrderController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrdersTbl>> getOrderById(int id)
+        public async Task<ActionResult<MoreInfoOrderDTO>> getOrderById(int id)
         {
             return await _iOrderService.getOrderById(id);
         }
 
         // POST api/<OrderController>
         [HttpPost]
-        public async Task<ActionResult<OrdersTbl>> invite(OrdersTbl order)
+        public async Task<ActionResult<LessInfoOrderDTO>> AddOrder(OrdersTbl order)
         {
-            OrdersTbl postOrder = await _iOrderService.invite(order);
+            LessInfoOrderDTO postOrder = await _iOrderService.AddOrder(order);
             if (postOrder == null)
                 return BadRequest();
             return CreatedAtAction(nameof(getOrderById), new { id = postOrder.OrderId }, postOrder);

@@ -20,7 +20,7 @@ namespace Repository
             return await ShopContext_.OrdersTbls.FirstOrDefaultAsync(x => x.OrderId == ind);
         }
 
-        public async Task<OrdersTbl> invite(OrdersTbl order)
+        public async Task<OrdersTbl> AddOrder(OrdersTbl order)
         {
             await ShopContext_.OrdersTbls.AddAsync(order);
             await ShopContext_.SaveChangesAsync();
