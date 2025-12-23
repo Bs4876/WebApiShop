@@ -18,7 +18,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
-builder.Services.AddDbContext<ShopContext>(option=>option.UseSqlServer("Data Source=SRV2\\PUPILS;Initial Catalog=330745571_MyDB;Integrated Security=True;Encrypt=False"));
+builder.Services.AddDbContext<ShopContext>(option=>option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
