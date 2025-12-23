@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using Repository;
 using Services;
 
@@ -25,6 +26,11 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
+builder.Host.UseNLog();
+
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -48,3 +54,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
