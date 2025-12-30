@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DTOs;
 using Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,26 @@ namespace Services
             this._mapper = mapper;
         }
 
-        public async Task<MoreInfoOrderDTO> getOrderById(int id)
+        public async Task<OrderMoreInfoDTO> getOrderById(int id)
         {
             OrdersTbl orderTbl = await _iOrserRepository.getOrderById(id);
-            MoreInfoOrderDTO  OrderDTos = _mapper.Map<OrdersTbl,MoreInfoOrderDTO>(orderTbl);
+            OrderMoreInfoDTO OrderDTos = _mapper.Map<OrdersTbl, OrderMoreInfoDTO>(orderTbl);
             return OrderDTos;      
         }
-        public async Task<LessInfoOrderDTO> AddOrder(OrdersTbl order)
+        public async Task<OrderDTO> AddOrder(CreatOrderDTO createOrder)
         {
+            OrdersTbl order = _mapper.Map<CreatOrderDTO, OrdersTbl>(createOrder);
+            double sum = 0;
+            foreach (var item in createOrder.OrderItemDTOs)
+            {
+                sum += (item.productPrice*item.Quantity);
+            }
+            order.OrderSum=sum;
             OrdersTbl orderTbl = await _iOrserRepository.AddOrder(order);
-            LessInfoOrderDTO OrderDTOs = _mapper.Map<OrdersTbl,LessInfoOrderDTO>(orderTbl);
+            OrderDTO OrderDTOs = _mapper.Map<OrdersTbl, OrderDTO>(orderTbl);
+
             return OrderDTOs;
         }
     }
 }
+//dotnet restore

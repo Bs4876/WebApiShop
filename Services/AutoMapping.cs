@@ -16,11 +16,17 @@ namespace Services
             CreateMap<ProductsTbl, MoreInfoProductDTO>();
             CreateMap<ProductsTbl, LessInfoProductDTO>();
 
-            CreateMap<OrdersTbl, MoreInfoOrderDTO>();
-            CreateMap<OrdersTbl, LessInfoOrderDTO>();
+            CreateMap<OrdersTbl, OrderMoreInfoDTO>();
+            CreateMap<OrdersTbl, CreatOrderDTO>();
+            CreateMap<OrdersTbl, OrderDTO>();
 
-            CreateMap<User, MoreInfoUserDTO>();
-            CreateMap<User, LessInfoUserDTO>();
+            CreateMap<OrderMoreInfoDTO,OrdersTbl >();
+            CreateMap<CreatOrderDTO,OrdersTbl >();
+            CreateMap<OrderDTO,OrdersTbl >();
+
+            CreateMap<User, UserDTO>();
+            CreateMap<UserDTO, User>();
+            CreateMap<UserToRegisterDTO, User>();
         }
     }
 }

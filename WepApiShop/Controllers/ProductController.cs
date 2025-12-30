@@ -19,9 +19,10 @@ namespace WebApiShop.Controllers
         }
         // GET: api/<ProductController>
         [HttpGet]
-        public async Task<List<LessInfoProductDTO>> getProducts(int[]? categoryId, int? minPrice, int? maxPrice, int? limit, int? page)
+        public async Task<PageResponseDTO<LessInfoProductDTO>> getProducts([FromQuery] int?[] categoryIds,int? minPrice, int? maxPrice, int position, int skip)
         {
-            return await _iProductService.getProducts(categoryId, minPrice, maxPrice, limit, page);
+            
+            return await _iProductService.getProducts(categoryIds, minPrice, maxPrice, position, skip);
         }
     }
 }

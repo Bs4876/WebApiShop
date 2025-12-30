@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOs", "DTOs\DTOs.csproj", "{C832A78A-2EA7-49E7-AB5B-E4E2F53999B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{F3141323-5C0C-49AE-8636-A29F61EFEFE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C832A78A-2EA7-49E7-AB5B-E4E2F53999B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C832A78A-2EA7-49E7-AB5B-E4E2F53999B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C832A78A-2EA7-49E7-AB5B-E4E2F53999B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3141323-5C0C-49AE-8636-A29F61EFEFE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3141323-5C0C-49AE-8636-A29F61EFEFE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3141323-5C0C-49AE-8636-A29F61EFEFE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3141323-5C0C-49AE-8636-A29F61EFEFE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

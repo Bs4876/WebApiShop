@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace DTOs
 {
-    public record UserDTO
+    public record CreatOrderDTO
     (
-    int UserId,
-    string FirstName,
-    string LastName,
-    string UserMail,
-    string Password
+        int userId,
+        List<OrderItemDTO> OrderItemDTOs
     );
 }

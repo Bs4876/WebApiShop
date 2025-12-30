@@ -4,6 +4,6 @@ namespace Repository
 {
     public interface IProductRepository
     {
-        Task<List<ProductsTbl>> getProducts(int[]? categoryId, int? minPrice, int? maxPrice, int? limit, int? page);
+        Task<(List<ProductsTbl> products, int total)> getProducts(int?[] categoryIds, int? minPrice, int? maxPrice, int position, int skip);
     }
 }

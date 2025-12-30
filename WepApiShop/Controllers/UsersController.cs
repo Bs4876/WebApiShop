@@ -3,6 +3,7 @@ using System.Text.Json;
 using Entities;
 using Services;
 using NLog.Web;
+using DTOs;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WepApiShop.Controllers
@@ -22,9 +23,9 @@ namespace WepApiShop.Controllers
         // GET api/<Users>/5
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<User>> Get(int ind)
+        public async Task<ActionResult<UserDTO>> Get(int ind)
         {
-            User user =await _usersServices.getUserById(ind);
+            UserDTO user =await _usersServices.getUserById(ind);
             if (user == null)
                 return NoContent();
             return Ok(user);
@@ -32,18 +33,18 @@ namespace WepApiShop.Controllers
 
         [HttpPost]
         // POST api/<Users>
-        public async Task<ActionResult<User>> POST([FromBody] User user)
+        public async Task<ActionResult<UserDTO>> POST([FromBody] UserToRegisterDTO user)
         {
-            User postUser =await _usersServices.registerUser(user);
+            UserDTO postUser =await _usersServices.registerUser(user);
             if (postUser == null)
                 return BadRequest();
             return CreatedAtAction(nameof(Get), new { id = postUser.UserId }, postUser);
         }
 
         [HttpPost ("login")]
-       public async Task<ActionResult<User>> Post([FromBody] UserLog userToLog)
+       public async Task<ActionResult<UserDTO>> Post([FromBody] UserLog userToLog)
        {
-            User user  =await _usersServices.loginUser(userToLog);
+            UserDTO user  =await _usersServices.loginUser(userToLog);
            
             if (user == null)
             {
@@ -56,9 +57,9 @@ namespace WepApiShop.Controllers
 
         // PUT api/<Users>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] User userToUpdate)
+        public async Task<ActionResult> Put(int id, [FromBody] UserToRegisterDTO userToUpdate)
         {
-            User postUser =await _usersServices.updateUser(userToUpdate,id);
+            UserDTO postUser =await _usersServices.updateUser(userToUpdate,id);
             if (postUser == null)
                 return BadRequest("Password is not strong enough");
             return NoContent();

@@ -1,16 +1,10 @@
 ﻿namespace DTOs
 {
-    public record LessInfoOrderDTO
+    public record OrderDTO
         (
         int OrderId,
         DateOnly OrderDate,
         double? OrderSum
-        //,int Status
         );
-        public record MoreInfoOrderDTO(
-        int OrderId,
-        DateOnly OrderDate,
-        double? OrderSum
-
-        );
+       
 }

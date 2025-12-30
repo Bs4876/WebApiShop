@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace DTOs
 {
-    public record UserDTO
+    public record UserToLog
     (
-    int UserId,
-    string FirstName,
-    string LastName,
     string UserMail,
     string Password
     );

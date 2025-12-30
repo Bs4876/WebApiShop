@@ -15,9 +15,19 @@ namespace Repository
         {
             this._ShopContext = shopContext;
         }
-        public async Task<List<ProductsTbl>> getProducts(int[]? categoryId, int? minPrice, int? maxPrice, int? limit, int? page)
+        public async Task<(List<ProductsTbl> products,int total)> getProducts(int?[] categoryIds, int? minPrice, int? maxPrice, int position=1, int skip=10)
         {
-            return await _ShopContext.ProductsTbls.ToListAsync();
+             var query = _ShopContext.ProductsTbls.Where(product =>
+             ((minPrice == null) ? (true) : (product.ProductPrice >= minPrice))
+             && ((maxPrice == null) ? (true) : (product.ProductPrice <= maxPrice))
+             && ((categoryIds.Length == 0) ? (true) : (categoryIds.Contains(product.CategoryId))))
+             .OrderBy(product => product.ProductPrice);
+
+             Console.WriteLine(query.ToQueryString());
+             List<ProductsTbl> products = await query.Skip((position - 1) * skip)
+            .Take(skip).Include(product => product.Category).ToListAsync();
+             var total = await query.CountAsync();
+              return (products, total);
         }
     }
 }
